@@ -1,0 +1,17 @@
+○置き換え挿入
+ci'
+aaaaaaaa'bbbbbbb'cccccc
+
+○削除
+di"
+aaaohoge""cccccc
+
+
+shift + v 
+ctrl + v 
+
+○範囲選択でコピー&ペースト
+shift + v y
+p 
+
+

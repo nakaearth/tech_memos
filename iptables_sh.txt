@@ -1,0 +1,32 @@
+#!/bin/sh
+
+if [ $# -ne 2 ]; then
+  echo "usage check-master.sh $MASTER_GROUP $ACTION"
+  exit 1
+fi
+
+MASTER_GROUP=$1
+ACTION=$2
+
+MASTER_IP=`redis-cli -h chef-ho-05 -p 26379 info | grep $MASTER_GROUP | sed -e "s/^.*address=\([0-9\.]\+\):.*$/\1/g"`
+echo $MASTER_IP
+
+case "$ACTION" in
+  "hosts")
+    sed -e "/$MASTER_GROUP/d" /etc/hosts > /tmp/hosts
+    echo "$MASTER_IP $MASTER_GROUP" >> /tmp/hosts
+    sudo mv -f /tmp/hosts /etc/hosts
+    ;;
+  "iptables")
+    sudo sed -e "s/$MASTER_GROUP/$MASTER_IP/g" /etc/sysconfig/iptables-rules > /tmp/iptables
+    sort /tmp/iptables | sed -e "/^#/d" | sed -e "/^:/d" > /tmp/iptables.new
+    sudo sort /etc/sysconfig/iptables | sed -e "/^#/d" | sed -e "/^:/d" > /tmp/iptables.old
+    if diff -w /tmp/iptables.new /tmp/iptables.old > /dev/null ; then
+      echo "same!!"
+    else
+      echo "changed!!"
+      sudo mv -f /tmp/iptables /etc/sysconfig/iptables
+      sudo /etc/init.d/iptables restart
+    fi
+    ;;
+esac

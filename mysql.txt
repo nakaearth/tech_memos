@@ -1,0 +1,52 @@
+インストール
+ http://dev.mysql.com/downloads/mysql/5.0.html#macosx-dmg
+ ここから取得しインストール。
+
+MySLQの起動
+ sudo /Library/StartupItems/MySQLCOM/MySQLCOM start
+ sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop
+
+ps -ef | grep mysql
+
+
+・コマンド色々
+http://www.bitscope.co.jp/tep/MySQL/quickMySQL.html#doc1_id656
+
+
+create database my_testdb
+
+use my_testdb
+
+alter table add age int(3) after name
+
+SHOW CREATE TABLE user
+
+DESC user; 
+
+・Engineの切り替え
+alter table users ENGINE innoDB
+
+SHOW CREATE TABLE テーブル名; 
+
+・トランザクション
+トランザクションを開始する。これ以降に入力されたSQLクエリはトランザクションとして扱われる。トランザクションが終った場合はCOMMIT(DBに結果を反映)かROLLBACK(トランザクション開始前の状態に戻す)をする。
+mysql> START TRANSACTION;
+
+START TRANSACTION以降のクエリをDBに反映させてトランザクションを完了する場合は以下のようにする。
+mysql> COMMIT;
+
+途中でエラーが発生する等してSTART TRANSACTION以降のクエリを取り消したい場合はROLLBACKする。
+mysql> ROLLBACK;
+
+
+
+select * from users group by states having(price > 1000)
+
+・Mysqlのエンコード変更やステータス確認など
+
+1)ステータス確認
+status
+
+2)clientの文字コード変更
+set names 'utf8mb4'
+

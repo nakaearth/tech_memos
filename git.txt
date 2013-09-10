@@ -1,0 +1,61 @@
+git add .
+
+git commit -m'hoge'
+
+git commit -a -m'update file'
+
+git reset
+
+git checkout -- sample.txt
+
+git reset HEAD  <======= ADDする前に戻る。Indexを戻す
+
+git reset --hard HEAD <======ファイルの状態を戻す
+git reset --hard HEAD~2 <======2個前にファイルの状態を戻す
+
+git config -l
+
+
+git branch
+git branch -a
+
+git branch test_branch
+git checkout test_branch
+git push -u origin  test_branch
+
+git fetch
+git merge test_branch
+git merge orign test_branch
+git merge --no-ff test
+git fetch --prune
+
+○git pull
+git pullは、上のgit fetchとgit merge origin/masterまでを
+全部まとめてやってくれる。
+
+http://d.hatena.ne.jp/hokaccha/20120404/1333507076
+http://qiita.com/items/e082d64f3f8b424e9b7d
+
+
+・他人が消したリモートリポジトリを自分のところから消す方法
+git fetch --prune
+git branch -rd xxx
+git remote prune origin
+
+
+・gitで不要になったブランチの削除
+% git branch -a
+* master
+   hoge
+   origin/hoge
+% git branch -d hoge
+% git push origin :hoge
+	:hoge でリモートブランチの削除になる。
+
+.gitconfigに以下の行を追加
+
+[core]
+  editor=vim
+
+・GUIツール
+sourceTree

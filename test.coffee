@@ -1,0 +1,6 @@
+
+square = (x) -> x * x
+cube =  (x) -> square(x) * x
+console.log "Test hello"
+alert cube(4)
+

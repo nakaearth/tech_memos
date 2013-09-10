@@ -1,0 +1,122 @@
+ps -aef|grep ruby |grep -v grep | awk '{print $1 $2 $8}'
+ps aux | grep redis | grep -v grep
+
+○psの実行結果を並び替えする
+ps -ae -o pid,pcpu,rss,time,cmdps -ae -o pid,pcpu,rss,time,cmd | sort -nr -k 2
+
+○物理
+free -s 2
+
+○仮想メモリを繰り返し表示
+vmstat -n 2
+
+swap:仮想メモリ。ここが増えて、Swapのsi soが頻繁に値が変わるような状態だとメモリ不足が考えられる。
+
+
+○サーバの死活監視
+ping -c 1 wwww.example.com > /dev/null 2>&1 || (echo "no response from www.example.jp" | mail -s ping_alert foo@example.jp)
+
+[ || ]は最初の左に書かれている処理が失敗した場合は右の動作をするということ
+
+○容量チェック
+du -s
+
+○プロセス数をカウントする
+netstat -an | grep ESTABLISH|grep :80|wc -l
+
+○find 
+find . -name "*.rb" | xargs grep encrypt
+
+find log -name test*.log -ctime -3 -type f
+=>
+-ctime はファイルのステータスが最後に変更されて日を示す。
+-mtimeはファイルの内容が変更された日を示す。 上の例だと3日前にファイルステータスが変わったものをさす
+
+-type f　はファイルのタイプをさす。-type d だとディレクトリ
+
+
+for x in lists; do hohoohogege; done
+
+○xargs
+echo a b c | xargs -n1 echo
+->
+入力しを一つずつ受け取っる。
+
+find /usr/local/project/testApp/log -ctime +3 | xargs rm 
+
+○test
+test -d ./hoge || mkdir ./hoge
+=>
+-d で ディレクトリがあれば真
+-e でディレクトリがあれば真
+-eq $VAR で$VARに一致すれば真
+-nq $VAR で$VARに一致しなければ真
+
+
+for i in 'ls -d /usr/local/apache*'; do sudo $i/bin/apachectl restart; done
+
+○gzip
+gzip --best
+->
+--best or -9はslowestな圧縮 
+--fast or -1はfastな圧縮
+通常は-6
+
+○tmux
+tmux list
+tmux a -t 0
+
+
+○ssh-copy-id
+sshキーのコピーを樹のサーバにおいて、ssh接続出来るようにする。
+/home/user_name/.ssh/authorized_keys に公開鍵を設定するが、それを自動でやる
+
+ssh -v ~~~.com
+-> -v をつける事で接続出来ない時に細かい情報が表示される。
+
+○sar コンピュータのシステム評価
+sar  2 5
+sar -d 2 5
+sar -p 2 5
+
+○ネットワーク経路探索
+traceroute www.yaplog.jp
+
+free -m
+
+○nslookup
+nslookup [ogehoghe.com]
+
+
+・crontab 
+crontab -e で編集
+メール転送
+
+MAILTO = user@domain.com
+* * * * * /hoge/hoge.sh
+
+みたいする
+
+・watch
+watch date
+
+watch -n 3 '/usr/bin/du -m'
+
+・OSのエラー
+grep kernel /var/log/messages
+grep error /var/log/messages
+
+・複数のワードを除外して検索
+grep -ve ntpd -ve yum /var/log/messages
+
+
+○ファイルの場所どこにある
+locate 
+
+
+○Apacheのシンタックスチェック
+apachectl configtest
+
+
+
+
