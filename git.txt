@@ -57,5 +57,8 @@ git remote prune origin
 [core]
   editor=vim
 
+・git二弾回認証
+git remote set-url origin git@github.com:nakaearth/myapphubot.git
+
 ・GUIツール
 sourceTree
