@@ -24,7 +24,7 @@ du -s
 ○プロセス数をカウントする
 netstat -an | grep ESTABLISH|grep :80|wc -l
 
-○find 
+○find
 find . -name "*.rb" | xargs grep encrypt
 
 find log -name test*.log -ctime -3 -type f
@@ -42,7 +42,7 @@ echo a b c | xargs -n1 echo
 ->
 入力しを一つずつ受け取っる。
 
-find /usr/local/project/testApp/log -ctime +3 | xargs rm 
+find /usr/local/project/testApp/log -ctime +3 | xargs rm
 
 ○test
 test -d ./hoge || mkdir ./hoge
@@ -118,5 +118,7 @@ locate
 apachectl configtest
 
 
+⚪︎・git
+git grep -l to_show_payroll_attributes | xargs sed -i '' -e 's/to_show_payroll_attributes/displayable_attributes/g'
 
 
