@@ -36,3 +36,19 @@ gg
 
 Ctrl + o
 
+・vim grepで検索
+:vim search_word app/views/**
+
+ex)
+:vim entry_cd app/services/**
+
+検索結果の欄に移動するのは
+:Control + w
+
+結果一覧内の移動
+:cn <<< 次の移動
+:cp <<< 前に移動
+:ccl <<< 検索結果を閉じる
+参考：http://blog.onk164.net/archives/517.html
+http://qiita.com/yuku_t/items/0c1aff03949cb1b8fe6b
+
