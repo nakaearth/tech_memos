@@ -34,6 +34,8 @@ find log -name test*.log -ctime -3 -type f
 
 -type f　はファイルのタイプをさす。-type d だとディレクトリ
 
+特定の文字列を検索する場合
+find ./app/views -type f -print | xargs grep 'validity'
 
 for x in lists; do hohoohogege; done
 
