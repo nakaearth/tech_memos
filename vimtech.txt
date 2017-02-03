@@ -52,3 +52,9 @@ ex)
 参考：http://blog.onk164.net/archives/517.html
 http://qiita.com/yuku_t/items/0c1aff03949cb1b8fe6b
 
+◯ 部分範囲選択で更新
+Cntrl + v (同時押し) してカーソル移動で範囲選択
+Shift + i で入力モード
+文字を入れて Esc すると反映される
+
+
